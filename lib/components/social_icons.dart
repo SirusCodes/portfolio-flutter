@@ -1,6 +1,7 @@
 import 'package:Portfolio/animations/fade_slide.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../extensions/hover.dart';
 
 class SocialIcons extends StatefulWidget {
   SocialIcons(this.image, {Key key, this.url, this.delay}) : super(key: key);
@@ -40,17 +41,16 @@ class _SocialIconsState extends State<SocialIcons>
           offset: Offset(0, _liftup.value),
           child: child,
         ),
-        child: MouseRegion(
-          onEnter: (_) => _controller.forward(),
-          onExit: (_) => _controller.reverse(),
-          child: GestureDetector(
-            onTap: () => _launchURL(widget.url),
-            child: FadeSlide(
-              delay: widget.delay,
-              slideBegin: -80,
-              child: Image.asset("assets/social icons/${widget.image}.png"),
-            ),
+        child: GestureDetector(
+          onTap: () => _launchURL(widget.url),
+          child: FadeSlide(
+            delay: widget.delay,
+            slideBegin: -80,
+            child: Image.asset("assets/social icons/${widget.image}.png"),
           ),
+        ).hover(
+          onHover: () => _controller.forward(),
+          onExit: () => _controller.reverse(),
         ),
       ),
     );
