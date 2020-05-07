@@ -22,7 +22,13 @@ class _SocialIconsState extends State<SocialIcons>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 80));
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -35,14 +41,13 @@ class _SocialIconsState extends State<SocialIcons>
           delay: widget.delay,
           slideBegin: -80,
           child: HoverLift(
-            controller: _controller,
-            child: Image.asset("assets/social icons/${widget.image}.png").hover(
-              onHover: () => _controller.forward(),
-              onExit: () => _controller.reverse(),
-            ),
-          ),
+              controller: _controller,
+              child: Image.asset("assets/social icons/${widget.image}.png")),
         ),
       ),
+    ).hover(
+      onHover: () => _controller.forward(),
+      onExit: () => _controller.reverse(),
     );
   }
 

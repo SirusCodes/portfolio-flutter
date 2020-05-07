@@ -8,12 +8,16 @@ class HoverLift extends AnimatedWidget {
   final Widget child;
 
   static final _liftUp = Tween<double>(begin: 0, end: -10);
+  static final _scale = Tween<double>(begin: 1.0, end: 1.2);
   @override
   Widget build(BuildContext context) {
     final controller = listenable;
-    return Transform.translate(
-      offset: Offset(0, _liftUp.animate(controller).value),
-      child: child,
+    return Transform.scale(
+      scale: _scale.animate(controller).value,
+      child: Transform.translate(
+        offset: Offset(0, _liftUp.animate(controller).value),
+        child: child,
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:Portfolio/components/background.dart';
+import 'package:Portfolio/components/side_navigation.dart';
 import 'package:Portfolio/components/social_rail.dart';
 import 'package:flutter/material.dart';
 
@@ -16,8 +17,16 @@ class LandingScreen extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: ConstrainedBox(
               constraints:
-                  BoxConstraints.tight(Size(_size.width / 21, _size.height)),
+                  BoxConstraints.tight(Size(_size.width / 23, _size.height)),
               child: SocialRail(),
+            ),
+          ),
+          Align(
+            alignment: Alignment.centerRight,
+            child: ConstrainedBox(
+              constraints:
+                  BoxConstraints.tight(Size(_size.width / 8, _size.height)),
+              child: SideNavigation(),
             ),
           ),
         ],
