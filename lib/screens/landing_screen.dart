@@ -1,3 +1,4 @@
+import 'package:Portfolio/components/background.dart';
 import 'package:Portfolio/components/social_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -8,11 +9,15 @@ class LandingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Theme.of(context).backgroundColor,
-      child: Row(
+      child: Stack(
         children: <Widget>[
-          Expanded(child: SocialRail()),
-          Expanded(flex: 20, child: Container()),
+          Positioned.fill(child: Background()),
+          Row(
+            children: <Widget>[
+              Expanded(child: SocialRail()),
+              Expanded(flex: 20, child: Container()),
+            ],
+          ),
         ],
       ),
     );
