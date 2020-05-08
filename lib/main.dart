@@ -1,4 +1,6 @@
+import 'package:Portfolio/provider/arrow_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import './screens/landing_screen.dart';
 
 void main() {
@@ -28,7 +30,10 @@ class MyApp extends StatelessWidget {
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LandingScreen(),
+      home: ChangeNotifierProvider<ArrowProvider>(
+        create: (context) => ArrowProvider(),
+        child: LandingScreen(),
+      ),
     );
   }
 }

@@ -3,7 +3,6 @@ import 'package:Portfolio/screens/content/projects.dart';
 import '../animations/item_fader.dart';
 import './content/about.dart';
 import './content/landing.dart';
-import '../extensions/hover.dart';
 import 'package:flutter/material.dart';
 
 class Content extends StatefulWidget {

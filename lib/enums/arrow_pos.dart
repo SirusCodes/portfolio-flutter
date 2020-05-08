@@ -1,0 +1,1 @@
+enum ArrowPos { upper, lower }

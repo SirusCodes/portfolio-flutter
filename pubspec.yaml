@@ -26,6 +26,8 @@ dependencies:
   url_launcher: ^5.4.5
   simple_animations: ^2.1.1
   universal_html: ^1.2.2
+  flare_flutter: ^2.0.3
+  provider: ^4.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -51,6 +53,7 @@ flutter:
   assets:
     - assets/social icons/
     - assets/images/
+    - assets/rive/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
