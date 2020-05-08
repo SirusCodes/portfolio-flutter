@@ -7,12 +7,12 @@ class SideNavigation extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Spacer(),
-        NavigationText("About", delay: 0),
+        NavigationText("Home", delay: 0),
         SizedBox(height: 10),
-        NavigationText("My Work", delay: .2),
+        NavigationText("About", delay: .2),
         SizedBox(height: 10),
         NavigationText("Projects", delay: .4),
         Spacer(),

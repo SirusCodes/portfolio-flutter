@@ -30,6 +30,7 @@ class _NavigationTextState extends State<NavigationText>
 
   @override
   Widget build(BuildContext context) {
+    final _size = MediaQuery.of(context).size;
     return FadeSlide(
       delay: widget.delay,
       slideBegin: 120,
@@ -39,7 +40,10 @@ class _NavigationTextState extends State<NavigationText>
           padding: const EdgeInsets.all(8),
           child: Text(
             widget.text,
-            style: Theme.of(context).textTheme.bodyText2,
+            style: Theme.of(context)
+                .textTheme
+                .bodyText2
+                .copyWith(fontSize: _size.width / 70),
           ),
         ).hover(
             onHover: () => _controller.forward(),
