@@ -28,6 +28,8 @@ dependencies:
   universal_html: ^1.2.2
   flare_flutter: ^2.0.3
   provider: ^4.1.0
+  responsive_builder: ^0.1.7
+  device_preview: ^0.4.4
 
 
   # The following adds the Cupertino Icons font to your application.
