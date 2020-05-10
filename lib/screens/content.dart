@@ -18,7 +18,7 @@ class _ContentState extends State<Content> {
   @override
   void initState() {
     super.initState();
-    _animation.generateKeys();
+    _animation.generateDropperKeys();
   }
 
   @override
@@ -26,12 +26,12 @@ class _ContentState extends State<Content> {
     final _size = MediaQuery.of(context).size;
     return Stack(
       children: <Widget>[
-        FadeDropper(key: _animation.getKeys[2], child: Projects()),
-        FadeDropper(key: _animation.getKeys[1], child: About()),
+        FadeDropper(key: _animation.getDropperKeys[2], child: Projects()),
+        FadeDropper(key: _animation.getDropperKeys[1], child: About()),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FadeDropper(key: _animation.getKeys[0], child: Landing()),
+            FadeDropper(key: _animation.getDropperKeys[0], child: Landing()),
             SizedBox(
               width: _size.width / 3,
             )

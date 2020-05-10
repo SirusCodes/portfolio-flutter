@@ -31,17 +31,17 @@ class PageProvider extends ChangeNotifier {
 
   void _previous() {
     if (_currentPage > 0) {
-      _animation.getKeys[_currentPage].currentState.hideToBottom();
+      _animation.getDropperKeys[_currentPage].currentState.hideToBottom();
       // calls previous screen and decreses counter
-      _animation.getKeys[--_currentPage].currentState.showFromTop();
+      _animation.getDropperKeys[--_currentPage].currentState.showFromTop();
     }
   }
 
   void _next() {
-    if (_currentPage < _animation.getKeys.length - 1) {
-      _animation.getKeys[_currentPage].currentState.hideToTop();
+    if (_currentPage < _animation.getDropperKeys.length - 1) {
+      _animation.getDropperKeys[_currentPage].currentState.hideToTop();
       // calls next screen and increases counter
-      _animation.getKeys[++_currentPage].currentState.showFromBottom();
+      _animation.getDropperKeys[++_currentPage].currentState.showFromBottom();
     }
   }
 }

@@ -8,10 +8,10 @@ class NavigationText extends StatefulWidget {
   final String text;
   final double delay;
   @override
-  _NavigationTextState createState() => _NavigationTextState();
+  NavigationTextState createState() => NavigationTextState();
 }
 
-class _NavigationTextState extends State<NavigationText>
+class NavigationTextState extends State<NavigationText>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
@@ -19,13 +19,21 @@ class _NavigationTextState extends State<NavigationText>
   void initState() {
     super.initState();
     _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 80));
+        AnimationController(vsync: this, duration: Duration(milliseconds: 500));
   }
 
   @override
   void dispose() {
     _controller.dispose();
     super.dispose();
+  }
+
+  lift() {
+    _controller.forward();
+  }
+
+  level() {
+    _controller.reverse();
   }
 
   @override
@@ -45,9 +53,7 @@ class _NavigationTextState extends State<NavigationText>
                 .bodyText2
                 .copyWith(fontSize: _size.width / 70),
           ),
-        ).hover(
-            onHover: () => _controller.forward(),
-            onExit: () => _controller.reverse()),
+        ).hover(onHover: () {}, onExit: () {}),
       ),
     );
   }

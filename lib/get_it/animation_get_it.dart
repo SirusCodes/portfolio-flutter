@@ -1,17 +1,27 @@
 import 'package:Portfolio/animations/fade_dropper.dart';
+import 'package:Portfolio/widgets/navigation_text.dart';
 import 'package:flutter/material.dart';
 
 class AnimationGetIt {
   AnimationController avatarController;
 
-  List<GlobalKey<FadeDropperState>> _key;
+  List<GlobalKey<FadeDropperState>> _dropperKeys;
+  List<GlobalKey<NavigationTextState>> _naviagtionKeys;
 
-  List<GlobalKey<FadeDropperState>> get getKeys => _key;
+  List<GlobalKey<FadeDropperState>> get getDropperKeys => _dropperKeys;
+  List<GlobalKey<NavigationTextState>> get getNavigationKeys => _naviagtionKeys;
 
-  generateKeys() {
-    _key = List.generate(3, (_) => GlobalKey<FadeDropperState>());
+  generateDropperKeys() {
+    _dropperKeys = List.generate(3, (_) => GlobalKey<FadeDropperState>());
     Future.delayed(Duration(milliseconds: 80), () {
-      _key[0].currentState.showFromTop();
+      _dropperKeys[0].currentState.showFromTop();
+    });
+  }
+
+  generateNavigationKeys() {
+    _naviagtionKeys = List.generate(3, (_) => GlobalKey<NavigationTextState>());
+    Future.delayed(Duration(seconds: 1, milliseconds: 100), () {
+      _naviagtionKeys[0].currentState.lift();
     });
   }
 }
