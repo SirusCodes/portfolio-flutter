@@ -1,5 +1,6 @@
 import 'package:Portfolio/enums/arrow_pos.dart';
 import 'package:Portfolio/provider/arrow_provider.dart';
+import 'package:Portfolio/provider/page_provider.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,6 +19,7 @@ class Arrow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
+    final _pageProvider = Provider.of<PageProvider>(context, listen: false);
     return SizedBox.fromSize(
       size: _size / 12,
       child: Transform.rotate(
@@ -25,7 +27,13 @@ class Arrow extends StatelessWidget {
         child: Consumer<ArrowProvider>(
           builder: (context, value, child) {
             return GestureDetector(
-              onTap: () => value.onTap(position),
+              onTap: () {
+                position == ArrowPos.upper
+                    ? _pageProvider.previousPage()
+                    : _pageProvider.nextPage();
+
+                return value.onTap(position);
+              },
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FlareActor(

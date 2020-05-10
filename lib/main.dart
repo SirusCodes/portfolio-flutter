@@ -1,13 +1,17 @@
+import 'package:Portfolio/locator.dart';
 import 'package:Portfolio/provider/arrow_provider.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './screens/landing_screen.dart';
 
-void main() => runApp(DevicePreview(
-      enabled: false,
-      builder: (context) => MyApp(),
-    ));
+void main() {
+  setup();
+  runApp(DevicePreview(
+    enabled: false,
+    builder: (context) => MyApp(),
+  ));
+}
 
 class MyApp extends StatelessWidget {
   @override

@@ -13,16 +13,19 @@ class ArrowProvider extends ChangeNotifier {
     }
   }
 
-  onTap(ArrowPos pos) {
+  onTap(ArrowPos pos) async {
     _setState(pos, "onTap");
     _setOther(pos, "hide");
-    Future.delayed(Duration(seconds: 3, milliseconds: 300), () {
-      _setOther(pos, "unhide");
-      _setState(pos, "idle");
-      Future.delayed(Duration(milliseconds: 300), () {
-        _setOther(pos, "idle");
-      });
+    // wait for 2s and the unhide the i.e. when is clicks
+    await Future.delayed(Duration(seconds: 2));
+    _setOther(pos, "unhide");
+    Future.delayed(Duration(milliseconds: 500), () {
+      // let other come and then set it into idle mode
+      _setOther(pos, "idle");
     });
+    await Future.delayed(Duration(seconds: 1, milliseconds: 300));
+    // set the clicked in idle mode after completing onTap animation
+    _setState(pos, "idle");
   }
 
   _setState(ArrowPos pos, String cmd) {

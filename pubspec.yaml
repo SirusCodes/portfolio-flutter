@@ -30,6 +30,7 @@ dependencies:
   provider: ^4.1.0
   responsive_builder: ^0.1.7
   device_preview: ^0.4.4
+  get_it: ^4.0.2
 
 
   # The following adds the Cupertino Icons font to your application.
