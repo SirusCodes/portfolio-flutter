@@ -1,37 +1,43 @@
-import 'package:Portfolio/provider/page_provider.dart';
+import 'package:Portfolio/get_it/animation_get_it.dart';
+import 'package:Portfolio/locator.dart';
 import 'package:Portfolio/screens/content/projects.dart';
-import 'package:provider/provider.dart';
+import '../animations/item_fader.dart';
 import './content/about.dart';
 import './content/landing.dart';
 import 'package:flutter/material.dart';
 
-class Content extends StatelessWidget {
+class Content extends StatefulWidget {
   const Content({Key key}) : super(key: key);
+
+  @override
+  _ContentState createState() => _ContentState();
+}
+
+class _ContentState extends State<Content> {
+  final _animation = locator<AnimationGetIt>();
+  @override
+  void initState() {
+    super.initState();
+    _animation.generateKeys();
+  }
 
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
-
-    List<Widget> _widgets = [
-      Row(
-        children: <Widget>[
-          SizedBox(
-            width: _size.width / 16,
-          ),
-          Landing(),
-        ],
-      ),
-      About(),
-      Projects()
-    ];
-
-    return Consumer<PageProvider>(
-      builder: (context, value, child) {
-        return AnimatedSwitcher(
-          duration: Duration(milliseconds: 300),
-          child: _widgets[value.getCurrentPage],
-        );
-      },
+    return Stack(
+      children: <Widget>[
+        ItemFader(key: _animation.getKeys[2], child: Projects()),
+        ItemFader(key: _animation.getKeys[1], child: About()),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ItemFader(key: _animation.getKeys[0], child: Landing()),
+            SizedBox(
+              width: _size.width / 3,
+            )
+          ],
+        ),
+      ],
     );
   }
 }

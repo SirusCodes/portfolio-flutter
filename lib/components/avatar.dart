@@ -25,6 +25,12 @@ class _AvatarState extends State<Avatar> with SingleTickerProviderStateMixin {
   }
 
   @override
+  void dispose() {
+    _animation.avatarController.dispose();
+    super.dispose();
+  }
+
+  @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     final _size = MediaQuery.of(context).size;
