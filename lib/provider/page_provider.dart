@@ -10,19 +10,22 @@ class PageProvider extends ChangeNotifier {
   int get getCurrentPage => _currentPage;
 
   void nextPage() async {
+    _next();
     // avatar will go to the side if moving to the next page
-    if (_currentPage == 0) _animation.avatarController.forward();
+    // -1 because in next currentPage is incremented by 1
+    if (_currentPage - 1 == 0) _animation.avatarController.forward();
 
     await Future.delayed(Duration(seconds: 2));
-    _next();
     notifyListeners();
   }
 
   void previousPage() async {
+    _previous();
+
     await Future.delayed(Duration(seconds: 2));
     // avatar will come in center if the page is going back to the landing screen
-    if (_currentPage == 1) _animation.avatarController.reverse();
-    _previous();
+    // +1 because in next currentPage is decremented by 1
+    if (_currentPage + 1 == 1) _animation.avatarController.reverse();
     notifyListeners();
   }
 

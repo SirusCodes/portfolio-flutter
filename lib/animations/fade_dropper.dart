@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class ItemFader extends StatefulWidget {
+class FadeDropper extends StatefulWidget {
   final Widget child;
 
-  const ItemFader({Key key, @required this.child}) : super(key: key);
+  const FadeDropper({Key key, @required this.child}) : super(key: key);
 
   @override
-  ItemFaderState createState() => ItemFaderState();
+  FadeDropperState createState() => FadeDropperState();
 }
 
-class ItemFaderState extends State<ItemFader>
+class FadeDropperState extends State<FadeDropper>
     with SingleTickerProviderStateMixin {
   //1 means its below, -1 means its above
-  int position = 1, bottom = 1;
+  int position = 1, bottom = -1;
   AnimationController _animationController;
-  Animation _animation;
+  Animation<double> _dropAnimation, _fadeAnimation;
 
   void showFromBottom() {
     setState(() {
@@ -53,12 +53,18 @@ class ItemFaderState extends State<ItemFader>
     super.initState();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 600),
+      duration: Duration(milliseconds: 333, seconds: 3),
     );
-    _animation = CurvedAnimation(
+
+    _dropAnimation = Tween<double>(begin: 640, end: 0).animate(CurvedAnimation(
       parent: _animationController,
-      curve: Curves.easeInOut,
-    );
+      curve: Interval(0.0, 1.0, curve: Curves.easeInOutBack),
+    ));
+
+    _fadeAnimation = Tween<double>(begin: 0, end: 1).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Interval(0.3, 1.0, curve: Curves.easeInOut),
+    ));
   }
 
   @override
@@ -70,12 +76,12 @@ class ItemFaderState extends State<ItemFader>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      animation: _animation,
+      animation: _animationController,
       builder: (context, child) {
         return Transform.translate(
-          offset: Offset(0, bottom * (64 * position * (1 - _animation.value))),
+          offset: Offset(0, position * (bottom * (_dropAnimation.value))),
           child: Opacity(
-            opacity: _animation.value,
+            opacity: _fadeAnimation.value,
             child: child,
           ),
         );

@@ -1,6 +1,7 @@
 import 'package:Portfolio/get_it/animation_get_it.dart';
 import 'package:Portfolio/locator.dart';
 import 'package:flutter/material.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 class Avatar extends StatefulWidget {
   const Avatar({
@@ -67,9 +68,20 @@ class _AvatarState extends State<Avatar> with SingleTickerProviderStateMixin {
       right: _longest / 3 - _longest / 10,
       child: Transform.translate(
         offset: _offset.value,
-        child: CircleAvatar(
-          radius: _radius.value,
-          backgroundImage: AssetImage("assets/images/darshan.jpg"),
+        child: CustomAnimation(
+          tween: Tween<double>(begin: 0.0, end: 1.0),
+          duration: Duration(seconds: 3),
+          curve: Curves.easeInQuart,
+          builder: (context, child, value) {
+            return Opacity(
+              opacity: value,
+              child: child,
+            );
+          },
+          child: CircleAvatar(
+            radius: _radius.value,
+            backgroundImage: AssetImage("assets/images/darshan.jpg"),
+          ),
         ),
       ),
     );

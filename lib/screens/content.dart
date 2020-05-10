@@ -1,7 +1,7 @@
 import 'package:Portfolio/get_it/animation_get_it.dart';
 import 'package:Portfolio/locator.dart';
 import 'package:Portfolio/screens/content/projects.dart';
-import '../animations/item_fader.dart';
+import '../animations/fade_dropper.dart';
 import './content/about.dart';
 import './content/landing.dart';
 import 'package:flutter/material.dart';
@@ -26,12 +26,12 @@ class _ContentState extends State<Content> {
     final _size = MediaQuery.of(context).size;
     return Stack(
       children: <Widget>[
-        ItemFader(key: _animation.getKeys[2], child: Projects()),
-        ItemFader(key: _animation.getKeys[1], child: About()),
+        FadeDropper(key: _animation.getKeys[2], child: Projects()),
+        FadeDropper(key: _animation.getKeys[1], child: About()),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            ItemFader(key: _animation.getKeys[0], child: Landing()),
+            FadeDropper(key: _animation.getKeys[0], child: Landing()),
             SizedBox(
               width: _size.width / 3,
             )
