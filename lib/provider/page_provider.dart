@@ -9,39 +9,44 @@ class PageProvider extends ChangeNotifier {
 
   int get getCurrentPage => _currentPage;
 
-  void nextPage() async {
-    _next();
+  Future nextPage(int selectedPage) async {
+    if (selectedPage < _animation.getDropperKeys.length) {
+      _animation.getDropperKeys[_currentPage].currentState.hideToTop();
+      _animation.getDropperKeys[selectedPage].currentState.showFromBottom();
+    }
     // avatar will go to the side if moving to the next page
-    // -1 because in next currentPage is incremented by 1
-    if (_currentPage - 1 == 0) _animation.avatarController.forward();
+    if (selectedPage > 0) _animation.avatarController.forward();
 
     await Future.delayed(Duration(seconds: 2));
     notifyListeners();
   }
 
-  void previousPage() async {
-    _previous();
+  Future previousPage(int selectedPage) async {
+    if (selectedPage >= 0) {
+      _animation.getDropperKeys[_currentPage].currentState.hideToBottom();
+      _animation.getDropperKeys[selectedPage].currentState.showFromTop();
+    }
 
     await Future.delayed(Duration(seconds: 2));
     // avatar will come in center if the page is going back to the landing screen
-    // +1 because in next currentPage is decremented by 1
-    if (_currentPage + 1 == 1) _animation.avatarController.reverse();
+    if (selectedPage == 0) _animation.avatarController.reverse();
     notifyListeners();
   }
 
-  void _previous() {
-    if (_currentPage > 0) {
-      _animation.getDropperKeys[_currentPage].currentState.hideToBottom();
-      // calls previous screen and decreses counter
-      _animation.getDropperKeys[--_currentPage].currentState.showFromTop();
-    }
-  }
+  Future navSelected(int selectedPage) async {
+    if (selectedPage == _currentPage) return null;
 
-  void _next() {
-    if (_currentPage < _animation.getDropperKeys.length - 1) {
-      _animation.getDropperKeys[_currentPage].currentState.hideToTop();
-      // calls next screen and increases counter
-      _animation.getDropperKeys[++_currentPage].currentState.showFromBottom();
+    var keys = _animation.getNavigationKeys;
+    keys[_currentPage].currentState.level();
+    keys[selectedPage].currentState.lift();
+
+    if (selectedPage > _currentPage) {
+      await nextPage(selectedPage);
+    } else {
+      await previousPage(selectedPage);
     }
+
+    // calls selected screen and passes value to _current;
+    _currentPage = selectedPage;
   }
 }

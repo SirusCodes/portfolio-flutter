@@ -29,8 +29,10 @@ class Arrow extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 position == ArrowPos.upper
-                    ? _pageProvider.previousPage()
-                    : _pageProvider.nextPage();
+                    ? _pageProvider
+                        .navSelected(_pageProvider.getCurrentPage - 1)
+                    : _pageProvider
+                        .navSelected(_pageProvider.getCurrentPage + 1);
 
                 return value.onTap(position);
               },

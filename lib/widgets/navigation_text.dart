@@ -1,12 +1,21 @@
+import 'package:Portfolio/provider/page_provider.dart';
+import 'package:provider/provider.dart';
 import '../animations/fade_slide.dart';
-import '../animations/hover_lift.dart';
 import '../extensions/hover.dart';
 import 'package:flutter/material.dart';
 
 class NavigationText extends StatefulWidget {
-  NavigationText(this.text, {Key key, this.delay}) : super(key: key);
+  NavigationText(
+    this.text, {
+    Key key,
+    this.delay,
+    this.index,
+  }) : super(key: key);
+
   final String text;
   final double delay;
+  final int index;
+
   @override
   NavigationTextState createState() => NavigationTextState();
 }
@@ -14,12 +23,16 @@ class NavigationText extends StatefulWidget {
 class NavigationTextState extends State<NavigationText>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
+  Animation<double> _animation;
 
   @override
   void initState() {
     super.initState();
     _controller =
         AnimationController(vsync: this, duration: Duration(milliseconds: 500));
+
+    _animation = Tween<double>(begin: 1, end: 1.2)
+        .animate(CurvedAnimation(parent: _controller, curve: Curves.easeIn));
   }
 
   @override
@@ -39,21 +52,29 @@ class NavigationTextState extends State<NavigationText>
   @override
   Widget build(BuildContext context) {
     final _size = MediaQuery.of(context).size;
+    final _pageProvider = Provider.of<PageProvider>(context, listen: false);
     return FadeSlide(
       delay: widget.delay,
       slideBegin: 120,
-      child: HoverLift(
-        controller: _controller,
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          child: Text(
-            widget.text,
-            style: Theme.of(context)
-                .textTheme
-                .bodyText2
-                .copyWith(fontSize: _size.width / 70),
-          ),
-        ).hover(onHover: () {}, onExit: () {}),
+      child: AnimatedBuilder(
+        animation: _animation,
+        builder: (context, child) => Transform.scale(
+          scale: _animation.value,
+          child: child,
+        ),
+        child: GestureDetector(
+          onTap: () => _pageProvider.navSelected(widget.index),
+          child: Container(
+            padding: const EdgeInsets.all(8),
+            child: Text(
+              widget.text,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText2
+                  .copyWith(fontSize: _size.width / 70),
+            ),
+          ).hover(onHover: () {}, onExit: () {}),
+        ),
       ),
     );
   }

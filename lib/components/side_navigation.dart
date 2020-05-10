@@ -25,13 +25,26 @@ class _SideNavigationState extends State<SideNavigation> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
         Spacer(),
-        NavigationText("Home", key: _animation.getNavigationKeys[0], delay: 0),
+        NavigationText(
+          "Home",
+          key: _animation.getNavigationKeys[0],
+          delay: 0,
+          index: 0,
+        ),
         SizedBox(height: 10),
-        NavigationText("About",
-            key: _animation.getNavigationKeys[1], delay: .2),
+        NavigationText(
+          "About",
+          key: _animation.getNavigationKeys[1],
+          delay: .2,
+          index: 1,
+        ),
         SizedBox(height: 10),
-        NavigationText("Projects",
-            key: _animation.getNavigationKeys[2], delay: .4),
+        NavigationText(
+          "Projects",
+          key: _animation.getNavigationKeys[2],
+          delay: .4,
+          index: 2,
+        ),
         Spacer(),
       ],
     );
