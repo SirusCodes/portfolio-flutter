@@ -41,7 +41,7 @@ class LandingScreen extends StatelessWidget {
               ),
               buildArrowConditionally(position: ArrowPos.upper),
               buildArrowConditionally(position: ArrowPos.lower),
-              Avatar(),
+              Avatar(), //! TODO: uncomment this
             ],
           ),
         ),

@@ -31,7 +31,9 @@ class _ContentState extends State<Content> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FadeDropper(key: _animation.getDropperKeys[0], child: Landing()),
+            FadeDropper(
+                key: _animation.getDropperKeys[0],
+                child: Landing()), //! TODO: change this
             SizedBox(
               width: _size.width / 3,
             )
