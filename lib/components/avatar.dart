@@ -45,17 +45,11 @@ class _AvatarState extends State<Avatar> with SingleTickerProviderStateMixin {
               _shortest / 4 - _shortest / 2,
             ))
         .animate(CurvedAnimation(
-            parent: _animation.avatarController, curve: Curves.easeIn))
-          ..addListener(() {
-            setState(() {});
-          });
+            parent: _animation.avatarController, curve: Curves.easeIn));
 
     _radius = Tween<double>(begin: _longest / 10, end: _longest / 18).animate(
         CurvedAnimation(
-            parent: _animation.avatarController, curve: Curves.easeIn))
-      ..addListener(() {
-        setState(() {});
-      });
+            parent: _animation.avatarController, curve: Curves.easeIn));
   }
 
   @override
@@ -66,23 +60,28 @@ class _AvatarState extends State<Avatar> with SingleTickerProviderStateMixin {
     return Positioned(
       top: _shortest / 2 - _longest / 10,
       right: _longest / 3 - _longest / 10,
-      child: Transform.translate(
-        offset: _offset.value,
-        child: CustomAnimation(
-          tween: Tween<double>(begin: 0.0, end: 1.0),
-          duration: Duration(seconds: 3),
-          curve: Curves.easeInQuart,
-          builder: (context, child, value) {
-            return Opacity(
-              opacity: value,
-              child: child,
-            );
-          },
-          child: CircleAvatar(
-            radius: _radius.value,
-            backgroundImage: AssetImage("assets/images/darshan.jpg"),
-          ),
-        ),
+      child: AnimatedBuilder(
+        animation: _animation.avatarController,
+        builder: (context, child) {
+          return Transform.translate(
+            offset: _offset.value,
+            child: CustomAnimation(
+              tween: Tween<double>(begin: 0.0, end: 1.0),
+              duration: Duration(seconds: 3),
+              curve: Curves.easeInQuart,
+              builder: (context, child, value) {
+                return Opacity(
+                  opacity: value,
+                  child: child,
+                );
+              },
+              child: CircleAvatar(
+                radius: _radius.value,
+                backgroundImage: AssetImage("assets/images/darshan.jpg"),
+              ),
+            ),
+          );
+        },
       ),
     );
   }
