@@ -31,7 +31,7 @@ dependencies:
   responsive_builder: ^0.1.7
   device_preview: ^0.4.4
   get_it: ^4.0.2
-
+  scroll_snap_list: ^0.4.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

@@ -17,22 +17,40 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Portfolio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "Poppins",
         backgroundColor: Colors.black,
         accentColor: Colors.white,
         textTheme: TextTheme(
+          headline6: TextStyle(
+            color: Colors.white,
+            fontSize: 60,
+            fontWeight: FontWeight.w700,
+            letterSpacing: 1,
+          ),
+          caption: TextStyle(
+            color: Colors.white70,
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+          ),
           headline2: TextStyle(
-              color: Colors.white,
-              fontSize: 40,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 1),
+            color: Colors.white,
+            fontSize: 40,
+            fontWeight: FontWeight.w600,
+            letterSpacing: 1,
+          ),
           bodyText1: TextStyle(
-              color: Colors.white, fontSize: 24, fontWeight: FontWeight.w400),
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.w400,
+          ),
           bodyText2: TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
+            color: Colors.white,
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+          ),
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
