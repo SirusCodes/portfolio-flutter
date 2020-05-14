@@ -1,44 +1,31 @@
-import 'package:Portfolio/animations/hover_lift.dart';
 import 'package:Portfolio/widgets/image_carousel.dart';
+import 'package:Portfolio/widgets/project_action_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../extensions/hover.dart';
+import 'package:flutter/rendering.dart';
+import 'package:universal_html/html.dart';
 
-class ProjectCard extends StatefulWidget {
+class ProjectCard extends StatelessWidget {
   const ProjectCard(
       {Key key,
       @required this.constraints,
-      @required this.url,
+      @required this.gitUrl,
       @required this.title,
       @required this.content,
       @required this.images,
-      @required this.technologies})
+      @required this.technologies,
+      this.apkUrl})
       : super(key: key);
   final BoxConstraints constraints;
-  final String url, title, content, technologies;
+  final String gitUrl, title, content, technologies, apkUrl;
   final List<String> images;
-
-  @override
-  _ProjectCardState createState() => _ProjectCardState();
-}
-
-class _ProjectCardState extends State<ProjectCard>
-    with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  @override
-  void initState() {
-    super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 80));
-  }
 
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints(
-        minHeight: widget.constraints.maxHeight,
-        minWidth: widget.constraints.maxWidth,
+        minHeight: constraints.maxHeight,
+        minWidth: constraints.maxWidth,
       ),
       child: Padding(
         padding: const EdgeInsets.all(70.0),
@@ -50,11 +37,11 @@ class _ProjectCardState extends State<ProjectCard>
               height: 2,
             ),
             SizedBox.fromSize(
-              size: Size(widget.constraints.maxWidth - 140,
-                  widget.constraints.maxHeight - 160),
+              size:
+                  Size(constraints.maxWidth - 140, constraints.maxHeight - 160),
               child: Row(
                 children: <Widget>[
-                  ImageCarousel(images: widget.images),
+                  ImageCarousel(images: images),
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
@@ -62,53 +49,41 @@ class _ProjectCardState extends State<ProjectCard>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            widget.title,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline2
-                                .copyWith(
-                                  fontSize: widget.constraints.maxWidth / 30,
-                                ),
+                            title,
+                            style:
+                                Theme.of(context).textTheme.headline2.copyWith(
+                                      fontSize: constraints.maxWidth / 30,
+                                    ),
                           ),
                           Text(
-                            widget.content,
+                            content,
                             style: Theme.of(context).textTheme.caption.copyWith(
-                                  fontSize: widget.constraints.maxWidth / 70,
+                                  fontSize: constraints.maxWidth / 70,
                                 ),
                           ),
                           SizedBox(height: 20),
                           Text(
-                            "Technologies used: ${widget.technologies}",
+                            "Technologies used: $technologies",
                             style: Theme.of(context).textTheme.caption.copyWith(
-                                  fontSize: widget.constraints.maxWidth / 60,
+                                  fontSize: constraints.maxWidth / 60,
                                 ),
                           ),
                           Spacer(),
-                          FittedBox(
-                            child: HoverLift(
-                              controller: _controller,
-                              child: OutlineButton(
-                                child: Text(
-                                  "</code>",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyText2
-                                      .copyWith(
-                                        fontSize:
-                                            widget.constraints.maxWidth / 60,
-                                      ),
-                                ),
-                                splashColor: Colors.white54,
-                                hoverColor: Colors.white10,
-                                highlightedBorderColor: Colors.white,
-                                borderSide:
-                                    BorderSide(color: Colors.white, width: 2),
-                                onPressed: () => _launchURL(widget.url),
-                              ).hover(
-                                onHover: () => _controller.forward(),
-                                onExit: () => _controller.reverse(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              ProjectActionButton(
+                                url: gitUrl,
+                                title: "</code>",
+                                constraints: constraints,
                               ),
-                            ),
+                              if (apkUrl != null)
+                                ProjectActionButton(
+                                  url: apkUrl,
+                                  title: "Download Apk",
+                                  constraints: constraints,
+                                ),
+                            ],
                           ),
                         ],
                       ),
@@ -126,14 +101,5 @@ class _ProjectCardState extends State<ProjectCard>
         ),
       ),
     );
-  }
-
-  _launchURL(String url) async {
-    _controller.reverse();
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }
