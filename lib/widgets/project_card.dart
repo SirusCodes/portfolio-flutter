@@ -41,7 +41,11 @@ class ProjectCard extends StatelessWidget {
                   Size(constraints.maxWidth - 140, constraints.maxHeight - 160),
               child: Row(
                 children: <Widget>[
-                  ImageCarousel(images: images),
+                  ConstrainedBox(
+                    constraints:
+                        BoxConstraints(maxWidth: constraints.maxWidth / 4),
+                    child: ImageCarousel(images: images),
+                  ),
                   Flexible(
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
