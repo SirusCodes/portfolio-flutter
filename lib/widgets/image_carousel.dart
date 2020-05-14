@@ -3,7 +3,7 @@ import '../extensions/hover.dart';
 
 class ImageCarousel extends StatefulWidget {
   ImageCarousel({Key key, this.images}) : super(key: key);
-  final List<String> images;
+  final List<Image> images;
   @override
   _ImageCarouselState createState() => _ImageCarouselState();
 }
@@ -24,10 +24,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
       children: <Widget>[
         Expanded(
           flex: 10,
-          child: Image.network(
-            widget.images[index],
-            gaplessPlayback: true,
-          ),
+          child: widget.images[index],
         ),
         Flexible(
           child: Row(

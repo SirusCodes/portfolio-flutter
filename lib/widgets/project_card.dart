@@ -5,27 +5,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:universal_html/html.dart';
 
-class ProjectCard extends StatelessWidget {
-  const ProjectCard(
-      {Key key,
-      @required this.constraints,
-      @required this.gitUrl,
-      @required this.title,
-      @required this.content,
-      @required this.images,
-      @required this.technologies,
-      this.apkUrl})
-      : super(key: key);
+class ProjectCard extends StatefulWidget {
+  const ProjectCard({
+    Key key,
+    @required this.constraints,
+    @required this.gitUrl,
+    @required this.title,
+    @required this.content,
+    @required this.images,
+    @required this.technologies,
+    this.apkUrl,
+  }) : super(key: key);
   final BoxConstraints constraints;
   final String gitUrl, title, content, technologies, apkUrl;
   final List<String> images;
 
   @override
+  _ProjectCardState createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<ProjectCard> {
+  List<Image> images = [];
+  @override
+  void initState() {
+    super.initState();
+    for (var image in widget.images) {
+      images.add(Image.network(image));
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    for (var image in images) {
+      precacheImage(image.image, context);
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints: BoxConstraints(
-        minHeight: constraints.maxHeight,
-        minWidth: constraints.maxWidth,
+        minHeight: widget.constraints.maxHeight,
+        minWidth: widget.constraints.maxWidth,
       ),
       child: Padding(
         padding: const EdgeInsets.all(70.0),
@@ -37,13 +60,13 @@ class ProjectCard extends StatelessWidget {
               height: 2,
             ),
             SizedBox.fromSize(
-              size:
-                  Size(constraints.maxWidth - 140, constraints.maxHeight - 160),
+              size: Size(widget.constraints.maxWidth - 140,
+                  widget.constraints.maxHeight - 160),
               child: Row(
                 children: <Widget>[
                   ConstrainedBox(
-                    constraints:
-                        BoxConstraints(maxWidth: constraints.maxWidth / 4),
+                    constraints: BoxConstraints(
+                        maxWidth: widget.constraints.maxWidth / 4),
                     child: ImageCarousel(images: images),
                   ),
                   Flexible(
@@ -53,23 +76,25 @@ class ProjectCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Text(
-                            title,
-                            style:
-                                Theme.of(context).textTheme.headline2.copyWith(
-                                      fontSize: constraints.maxWidth / 30,
-                                    ),
+                            widget.title,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline2
+                                .copyWith(
+                                  fontSize: widget.constraints.maxWidth / 30,
+                                ),
                           ),
                           Text(
-                            content,
+                            widget.content,
                             style: Theme.of(context).textTheme.caption.copyWith(
-                                  fontSize: constraints.maxWidth / 70,
+                                  fontSize: widget.constraints.maxWidth / 70,
                                 ),
                           ),
                           SizedBox(height: 20),
                           Text(
-                            "Technologies used: $technologies",
+                            "Technologies used: ${widget.technologies}",
                             style: Theme.of(context).textTheme.caption.copyWith(
-                                  fontSize: constraints.maxWidth / 60,
+                                  fontSize: widget.constraints.maxWidth / 60,
                                 ),
                           ),
                           Spacer(),
@@ -77,15 +102,15 @@ class ProjectCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
                               ProjectActionButton(
-                                url: gitUrl,
+                                url: widget.gitUrl,
                                 title: "</code>",
-                                constraints: constraints,
+                                constraints: widget.constraints,
                               ),
-                              if (apkUrl != null)
+                              if (widget.apkUrl != null)
                                 ProjectActionButton(
-                                  url: apkUrl,
+                                  url: widget.apkUrl,
                                   title: "Download Apk",
-                                  constraints: constraints,
+                                  constraints: widget.constraints,
                                 ),
                             ],
                           ),
