@@ -23,12 +23,20 @@ class _ProjectsState extends State<Projects> {
                 child: Positioned(
                   bottom: 20,
                   right: 20,
-                  child: Text(
-                    "Scroll Up",
-                    style: Theme.of(context)
-                        .textTheme
-                        .caption
-                        .copyWith(fontSize: constraints.maxWidth / 60),
+                  child: Column(
+                    children: <Widget>[
+                      Icon(
+                        Icons.arrow_upward,
+                        color: Colors.white,
+                      ),
+                      Text(
+                        "Scroll Up",
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            .copyWith(fontSize: constraints.maxWidth / 60),
+                      ),
+                    ],
                   ),
                 ),
               ),
