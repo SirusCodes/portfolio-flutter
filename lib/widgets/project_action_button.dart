@@ -43,7 +43,7 @@ class _ProjectActionButtonState extends State<ProjectActionButton>
         child: Text(
           widget.title,
           style: Theme.of(context).textTheme.bodyText2.copyWith(
-                fontSize: widget.constraints.maxWidth / 60,
+                fontSize: widget.constraints.maxWidth / 55,
               ),
         ),
         splashColor: Colors.white54,

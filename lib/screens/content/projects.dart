@@ -1,3 +1,4 @@
+import 'package:Portfolio/project_data.dart';
 import 'package:Portfolio/widgets/project_card.dart';
 import 'package:flutter/material.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
@@ -42,24 +43,21 @@ class _ProjectsState extends State<Projects> {
               ),
               ScrollSnapList(
                 scrollDirection: Axis.vertical,
-                itemCount: 4,
+                itemCount: PROJECT_DATA.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ProjectCard(
                     constraints: constraints,
-                    images: [
-                      "https://github.com/SirusCodes/LCO_Workout/blob/master/Example/home.png?raw=true",
-                      "https://github.com/SirusCodes/LCO_Workout/blob/master/Example/exercise.png?raw=true"
-                    ],
-                    content:
-                        "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
-                    technologies: "Flutter",
-                    gitUrl: "https://github.com/SirusCodes/LCO_Workout/",
-                    title: "LCO Workout",
+                    images: PROJECT_DATA[index]["images"],
+                    content: PROJECT_DATA[index]["about"],
+                    technologies: PROJECT_DATA[index]["technologies"],
+                    gitUrl: PROJECT_DATA[index]["git_url"],
+                    apkUrl: PROJECT_DATA[index]["apk_url"],
+                    title: PROJECT_DATA[index]["title"],
                   );
                 },
                 itemSize: constraints.maxHeight,
                 onItemFocus: (int i) {
-                  if (i == 3)
+                  if (i == PROJECT_DATA.length - 1)
                     setState(() => _visibilty = false);
                   else
                     setState(() => _visibilty = true);

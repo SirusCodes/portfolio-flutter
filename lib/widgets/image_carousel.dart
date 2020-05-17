@@ -3,20 +3,33 @@ import '../extensions/hover.dart';
 
 class ImageCarousel extends StatefulWidget {
   ImageCarousel({Key key, this.images}) : super(key: key);
-  final List<Image> images;
+  final List<String> images;
   @override
   _ImageCarouselState createState() => _ImageCarouselState();
 }
 
 class _ImageCarouselState extends State<ImageCarousel> {
   int index = 0;
-
-  bool _nextButton = true, _previousButton = false;
+  List<Image> images = [];
   @override
   void initState() {
     super.initState();
     _update();
+    for (var image in widget.images) {
+      images.add(Image.network(image));
+    }
   }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    for (var image in images) {
+      precacheImage(image.image, context);
+    }
+  }
+
+  bool _nextButton = true, _previousButton = false;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +37,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
       children: <Widget>[
         Expanded(
           flex: 10,
-          child: widget.images[index],
+          child: images[index],
         ),
         Flexible(
           child: Row(
@@ -52,9 +65,11 @@ class _ImageCarouselState extends State<ImageCarousel> {
         onPressed: onPressed,
         hoverColor: Colors.white54,
         splashColor: Colors.black45,
-        child: Text(
-          text,
-          style: Theme.of(context).textTheme.headline2,
+        child: FittedBox(
+          child: Text(
+            text,
+            style: Theme.of(context).textTheme.headline2,
+          ),
         ),
       ),
     );
@@ -77,11 +92,10 @@ class _ImageCarouselState extends State<ImageCarousel> {
   }
 
   _update() {
-    if (index == widget.images.length - 1)
-      _nextButton = false;
-    else if (index > 0 && index < widget.images.length - 1) {
-      _nextButton = true;
-      _previousButton = true;
-    } else if (index == 0) _previousButton = false;
+    if (index > 0) _nextButton = true;
+    if (index == widget.images.length - 1) _nextButton = false;
+
+    if (index <= widget.images.length - 1) _previousButton = true;
+    if (index == 0) _previousButton = false;
   }
 }
