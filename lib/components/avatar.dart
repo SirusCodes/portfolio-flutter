@@ -45,11 +45,11 @@ class _AvatarState extends State<Avatar> with SingleTickerProviderStateMixin {
               _shortest / 4 - _shortest / 2,
             ))
         .animate(CurvedAnimation(
-            parent: _animation.avatarController, curve: Curves.easeIn));
+            parent: _animation.avatarController, curve: Curves.easeInCubic));
 
     _radius = Tween<double>(begin: _longest / 10, end: _longest / 18).animate(
         CurvedAnimation(
-            parent: _animation.avatarController, curve: Curves.easeIn));
+            parent: _animation.avatarController, curve: Curves.easeOutCubic));
   }
 
   @override
