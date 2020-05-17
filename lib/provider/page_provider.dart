@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 class PageProvider extends ChangeNotifier {
   final _animation = locator<AnimationGetIt>();
 
+  bool _animState = false;
+
   static int _currentPage = 0;
 
   int get getCurrentPage => _currentPage;
@@ -34,6 +36,7 @@ class PageProvider extends ChangeNotifier {
   }
 
   Future navSelected(int selectedPage) async {
+    _animState = true;
     if (selectedPage == _currentPage) return null;
 
     var keys = _animation.getNavigationKeys;
@@ -48,5 +51,13 @@ class PageProvider extends ChangeNotifier {
 
     // calls selected screen and passes value to _current;
     _currentPage = selectedPage;
+    _animState = false;
+  }
+
+  // check if animations are not in progress
+  void checkIfAnimProg(int selectedPage) {
+    if (!_animState) {
+      navSelected(selectedPage);
+    }
   }
 }

@@ -30,9 +30,9 @@ class Arrow extends StatelessWidget {
               onTap: () {
                 position == ArrowPos.upper
                     ? _pageProvider
-                        .navSelected(_pageProvider.getCurrentPage - 1)
+                        .checkIfAnimProg(_pageProvider.getCurrentPage - 1)
                     : _pageProvider
-                        .navSelected(_pageProvider.getCurrentPage + 1);
+                        .checkIfAnimProg(_pageProvider.getCurrentPage + 1);
 
                 return value.onTap(position);
               },

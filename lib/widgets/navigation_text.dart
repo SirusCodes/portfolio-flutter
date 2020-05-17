@@ -63,7 +63,7 @@ class NavigationTextState extends State<NavigationText>
           child: child,
         ),
         child: GestureDetector(
-          onTap: () => _pageProvider.navSelected(widget.index),
+          onTap: () => _pageProvider.checkIfAnimProg(widget.index),
           child: Container(
             padding: const EdgeInsets.all(8),
             child: Text(
