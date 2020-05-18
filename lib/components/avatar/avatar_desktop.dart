@@ -3,16 +3,17 @@ import 'package:Portfolio/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 
-class Avatar extends StatefulWidget {
-  const Avatar({
+class AvatarDesktop extends StatefulWidget {
+  const AvatarDesktop({
     Key key,
   }) : super(key: key);
 
   @override
-  _AvatarState createState() => _AvatarState();
+  _AvatarDesktopState createState() => _AvatarDesktopState();
 }
 
-class _AvatarState extends State<Avatar> with SingleTickerProviderStateMixin {
+class _AvatarDesktopState extends State<AvatarDesktop>
+    with SingleTickerProviderStateMixin {
   Animation<Offset> _offset;
   Animation<double> _radius;
 
