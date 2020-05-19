@@ -2,6 +2,7 @@ import 'package:Portfolio/project_data.dart';
 import 'package:Portfolio/widgets/project_card.dart';
 import 'package:flutter/material.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 class Projects extends StatefulWidget {
   const Projects({Key key}) : super(key: key);
@@ -21,9 +22,17 @@ class _ProjectsState extends State<Projects> {
             children: <Widget>[
               Visibility(
                 visible: _visibilty,
-                child: Positioned(
-                  bottom: 20,
-                  right: 20,
+                child: CustomAnimation(
+                  tween: Tween<double>(begin: 20, end: 60),
+                  curve: Curves.easeInOut,
+                  control: CustomAnimationControl.MIRROR,
+                  builder: (context, child, value) {
+                    return Positioned(
+                      bottom: value,
+                      right: 20,
+                      child: child,
+                    );
+                  },
                   child: Column(
                     children: <Widget>[
                       Icon(
