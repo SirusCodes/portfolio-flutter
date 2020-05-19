@@ -1,9 +1,9 @@
 import 'package:Portfolio/get_it/animation_get_it.dart';
 import 'package:Portfolio/locator.dart';
+import 'package:Portfolio/screens/content/landing/landing.dart';
 import 'package:Portfolio/screens/content/projects.dart';
 import '../animations/fade_dropper.dart';
 import './content/about.dart';
-import './content/landing.dart';
 import 'package:flutter/material.dart';
 
 class Content extends StatefulWidget {
@@ -23,22 +23,12 @@ class _ContentState extends State<Content> {
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
     return Stack(
       children: <Widget>[
+        //! TODO: Change to change screen
         FadeDropper(key: _animation.getDropperKeys[2], child: Projects()),
         FadeDropper(key: _animation.getDropperKeys[1], child: About()),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FadeDropper(
-                key: _animation.getDropperKeys[0],
-                child: Landing()), //! TODO: change this
-            SizedBox(
-              width: _size.width / 3,
-            )
-          ],
-        ),
+        FadeDropper(key: _animation.getDropperKeys[0], child: Landing()),
       ],
     );
   }
