@@ -13,6 +13,7 @@ class Projects extends StatefulWidget {
 
 class _ProjectsState extends State<Projects> {
   bool _visibilty = true;
+  int _currentScreen = 1;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,6 +51,17 @@ class _ProjectsState extends State<Projects> {
                   ),
                 ),
               ),
+              Positioned(
+                top: 20,
+                right: 20,
+                child: Text(
+                  "$_currentScreen/${PROJECT_DATA.length}",
+                  style: Theme.of(context)
+                      .textTheme
+                      .caption
+                      .copyWith(fontSize: constraints.maxWidth / 60),
+                ),
+              ),
               ScrollSnapList(
                 scrollDirection: Axis.vertical,
                 itemCount: PROJECT_DATA.length,
@@ -66,10 +78,14 @@ class _ProjectsState extends State<Projects> {
                 },
                 itemSize: constraints.maxHeight,
                 onItemFocus: (int i) {
-                  if (i == PROJECT_DATA.length - 1)
-                    setState(() => _visibilty = false);
-                  else
-                    setState(() => _visibilty = true);
+                  setState(() {
+                    if (i == PROJECT_DATA.length - 1)
+                      _visibilty = false;
+                    else
+                      _visibilty = true;
+
+                    _currentScreen = i + 1;
+                  });
                 },
               ),
             ],
