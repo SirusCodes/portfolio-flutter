@@ -3,14 +3,14 @@ import 'package:Portfolio/locator.dart';
 import 'package:Portfolio/widgets/navigation_text.dart';
 import 'package:flutter/material.dart';
 
-class SideNavigation extends StatefulWidget {
-  const SideNavigation({Key key}) : super(key: key);
+class NavigationDesktop extends StatefulWidget {
+  const NavigationDesktop({Key key}) : super(key: key);
 
   @override
-  _SideNavigationState createState() => _SideNavigationState();
+  _NavigationDesktopState createState() => _NavigationDesktopState();
 }
 
-class _SideNavigationState extends State<SideNavigation> {
+class _NavigationDesktopState extends State<NavigationDesktop> {
   final _animation = locator<AnimationGetIt>();
 
   @override

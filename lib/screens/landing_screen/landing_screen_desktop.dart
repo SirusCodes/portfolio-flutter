@@ -1,7 +1,7 @@
 import 'package:Portfolio/components/arrow.dart';
 import 'package:Portfolio/components/avatar/avatar_desktop.dart';
 import 'package:Portfolio/components/background.dart';
-import 'package:Portfolio/components/side_navigation.dart';
+import 'package:Portfolio/components/navigation/navigation_desktop.dart';
 import 'package:Portfolio/components/social_rail.dart';
 import 'package:Portfolio/enums/arrow_pos.dart';
 import 'package:Portfolio/provider/page_provider.dart';
@@ -29,7 +29,7 @@ class LandingScreenDesktop extends StatelessWidget {
             Expanded(flex: 20, child: Content()),
             Expanded(
               flex: 3,
-              child: SideNavigation(),
+              child: NavigationDesktop(),
             ),
           ],
         ),
