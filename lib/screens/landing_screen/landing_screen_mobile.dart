@@ -1,5 +1,6 @@
 import 'package:Portfolio/components/avatar/avatar_mobile.dart';
 import 'package:Portfolio/components/background.dart';
+import 'package:Portfolio/components/navigation/navigation_mobile.dart';
 import 'package:Portfolio/screens/content.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class LandingScreenMobile extends StatelessWidget {
         Background(),
         Content(),
         AvatarMobile(),
+        if (MediaQuery.of(context).size.width < 600) NavigationMobile(),
       ],
     );
   }

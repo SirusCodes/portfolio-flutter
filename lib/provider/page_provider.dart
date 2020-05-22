@@ -11,19 +11,19 @@ class PageProvider extends ChangeNotifier {
 
   int get getCurrentPage => _currentPage;
 
-  Future nextPage(int selectedPage) async {
+  Future nextPage(int selectedPage, bool isMobile) async {
     if (selectedPage < _animation.getDropperKeys.length) {
       _animation.getDropperKeys[_currentPage].currentState.hideToTop();
       _animation.getDropperKeys[selectedPage].currentState.showFromBottom();
     }
     // avatar will go to the side if moving to the next page
-    if (selectedPage > 0) _animation.avatarController.forward();
+    if (selectedPage > 0) if (!isMobile) _animation.avatarController.forward();
 
     await Future.delayed(Duration(seconds: 2));
     notifyListeners();
   }
 
-  Future previousPage(int selectedPage) async {
+  Future previousPage(int selectedPage, bool isMobile) async {
     if (selectedPage >= 0) {
       _animation.getDropperKeys[_currentPage].currentState.hideToBottom();
       _animation.getDropperKeys[selectedPage].currentState.showFromTop();
@@ -31,22 +31,24 @@ class PageProvider extends ChangeNotifier {
 
     await Future.delayed(Duration(seconds: 2));
     // avatar will come in center if the page is going back to the landing screen
-    if (selectedPage == 0) _animation.avatarController.reverse();
+    if (selectedPage == 0) if (!isMobile) _animation.avatarController.reverse();
     notifyListeners();
   }
 
-  Future navSelected(int selectedPage) async {
+  Future navSelected(int selectedPage, isMobile) async {
     _animState = true;
     if (selectedPage == _currentPage) return null;
 
-    var keys = _animation.getNavigationKeys;
-    keys[_currentPage].currentState.level();
-    keys[selectedPage].currentState.lift();
+    if (!isMobile) {
+      var keys = _animation.getNavigationKeys;
+      keys[_currentPage].currentState.level();
+      keys[selectedPage].currentState.lift();
+    }
 
     if (selectedPage > _currentPage) {
-      await nextPage(selectedPage);
+      await nextPage(selectedPage, isMobile);
     } else {
-      await previousPage(selectedPage);
+      await previousPage(selectedPage, isMobile);
     }
 
     // calls selected screen and passes value to _current;
@@ -55,9 +57,9 @@ class PageProvider extends ChangeNotifier {
   }
 
   // check if animations are not in progress
-  void checkIfAnimProg(int selectedPage) {
+  void checkIfAnimProg(int selectedPage, [bool isMobile = false]) {
     if (!_animState) {
-      navSelected(selectedPage);
+      navSelected(selectedPage, isMobile);
     }
   }
 }

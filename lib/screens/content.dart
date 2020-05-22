@@ -1,4 +1,3 @@
-import 'package:Portfolio/components/navigation/navigation_mobile.dart';
 import 'package:Portfolio/get_it/animation_get_it.dart';
 import 'package:Portfolio/locator.dart';
 import 'package:Portfolio/screens/content/landing/landing.dart';
@@ -26,7 +25,6 @@ class _ContentState extends State<Content> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        if (MediaQuery.of(context).size.width < 600) NavigationMobile(),
         //! TODO: Change to change screen
         FadeDropper(key: _animation.getDropperKeys[2], child: Projects()),
         FadeDropper(key: _animation.getDropperKeys[1], child: About()),

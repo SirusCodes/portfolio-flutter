@@ -3,7 +3,6 @@ import 'package:Portfolio/widgets/project_action_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:universal_html/html.dart';
 
 class ProjectCard extends StatelessWidget {
   const ProjectCard({
