@@ -3,7 +3,19 @@ import 'package:Portfolio/widgets/navigation_text.dart';
 import 'package:flutter/material.dart';
 
 class AnimationGetIt {
-  AnimationController avatarController;
+  AnimationController avatarDesktopController, avatarMobileController;
+
+  forward(bool isMobile) {
+    isMobile
+        ? avatarMobileController.forward()
+        : avatarDesktopController.forward();
+  }
+
+  reverse(bool isMobile) {
+    isMobile
+        ? avatarMobileController.reverse()
+        : avatarDesktopController.reverse();
+  }
 
   List<GlobalKey<FadeDropperState>> _dropperKeys;
   List<GlobalKey<NavigationTextState>> _naviagtionKeys;

@@ -17,7 +17,7 @@ class PageProvider extends ChangeNotifier {
       _animation.getDropperKeys[selectedPage].currentState.showFromBottom();
     }
     // avatar will go to the side if moving to the next page
-    if (selectedPage > 0) if (!isMobile) _animation.avatarController.forward();
+    if (selectedPage > 0) _animation.forward(isMobile);
 
     await Future.delayed(Duration(seconds: 2));
     notifyListeners();
@@ -31,7 +31,7 @@ class PageProvider extends ChangeNotifier {
 
     await Future.delayed(Duration(seconds: 2));
     // avatar will come in center if the page is going back to the landing screen
-    if (selectedPage == 0) if (!isMobile) _animation.avatarController.reverse();
+    if (selectedPage == 0) _animation.reverse(isMobile);
     notifyListeners();
   }
 

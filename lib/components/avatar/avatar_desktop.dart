@@ -22,13 +22,13 @@ class _AvatarDesktopState extends State<AvatarDesktop>
   @override
   void initState() {
     super.initState();
-    _animation.avatarController = AnimationController(
+    _animation.avatarDesktopController = AnimationController(
         vsync: this, duration: Duration(seconds: 1, milliseconds: 500));
   }
 
   @override
   void dispose() {
-    _animation.avatarController.dispose();
+    _animation.avatarDesktopController.dispose();
     super.dispose();
   }
 
@@ -46,11 +46,13 @@ class _AvatarDesktopState extends State<AvatarDesktop>
               _shortest / 4 - _shortest / 2,
             ))
         .animate(CurvedAnimation(
-            parent: _animation.avatarController, curve: Curves.easeInCubic));
+            parent: _animation.avatarDesktopController,
+            curve: Curves.easeInCubic));
 
     _radius = Tween<double>(begin: _longest / 10, end: _longest / 18).animate(
         CurvedAnimation(
-            parent: _animation.avatarController, curve: Curves.easeOutCubic));
+            parent: _animation.avatarDesktopController,
+            curve: Curves.easeOutCubic));
   }
 
   @override
@@ -62,7 +64,7 @@ class _AvatarDesktopState extends State<AvatarDesktop>
       top: _shortest / 2 - _longest / 10,
       right: _longest / 3 - _longest / 10,
       child: AnimatedBuilder(
-        animation: _animation.avatarController,
+        animation: _animation.avatarDesktopController,
         builder: (context, child) {
           return Transform.translate(
             offset: _offset.value,
