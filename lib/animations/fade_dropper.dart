@@ -78,11 +78,16 @@ class FadeDropperState extends State<FadeDropper>
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(0, position * (bottom * (_dropAnimation.value))),
-          child: Opacity(
-            opacity: _fadeAnimation.value,
-            child: child,
+        return Visibility(
+          //! To optimize as it will replace with a single widget rather than
+          //! building whole widget.
+          visible: _fadeAnimation.value != 0.0,
+          child: Transform.translate(
+            offset: Offset(0, position * (bottom * (_dropAnimation.value))),
+            child: Opacity(
+              opacity: _fadeAnimation.value,
+              child: child,
+            ),
           ),
         );
       },
