@@ -14,7 +14,7 @@ class LandingScreenMobile extends StatelessWidget {
         Background(),
         Content(),
         AvatarMobile(),
-        if (MediaQuery.of(context).size.width < 600) NavigationMobile(),
+        NavigationMobile(),
       ],
     );
   }

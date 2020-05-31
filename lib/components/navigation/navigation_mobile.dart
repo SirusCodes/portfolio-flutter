@@ -100,7 +100,7 @@ class _NavigationMobileState extends State<NavigationMobile>
             },
             child: AnimatedIcon(
                 icon: AnimatedIcons.menu_close, progress: _buttonController),
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
           ),
         ),
       ],

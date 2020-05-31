@@ -3,7 +3,7 @@ import 'package:Portfolio/locator.dart';
 import 'package:Portfolio/screens/content/landing/landing.dart';
 import 'package:Portfolio/screens/content/projects.dart';
 import '../animations/fade_dropper.dart';
-import './content/about.dart';
+import './content/about/about.dart';
 import 'package:flutter/material.dart';
 
 class Content extends StatefulWidget {
