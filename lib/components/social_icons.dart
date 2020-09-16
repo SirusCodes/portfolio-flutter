@@ -2,7 +2,6 @@ import 'package:Portfolio/animations/fade_slide.dart';
 import 'package:Portfolio/animations/hover_lift.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../extensions/hover.dart';
 
 class SocialIcons extends StatefulWidget {
   SocialIcons(this.image, {Key key, this.url, this.delay}) : super(key: key);
@@ -14,15 +13,13 @@ class SocialIcons extends StatefulWidget {
   _SocialIconsState createState() => _SocialIconsState();
 }
 
-class _SocialIconsState extends State<SocialIcons>
-    with SingleTickerProviderStateMixin {
+class _SocialIconsState extends State<SocialIcons> with SingleTickerProviderStateMixin {
   AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 80));
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 80));
   }
 
   @override
@@ -35,7 +32,8 @@ class _SocialIconsState extends State<SocialIcons>
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(10.0),
-      child: GestureDetector(
+      child: InkWell(
+        onHover: (value) => value ? _controller.forward() : _controller.reverse(),
         onTap: () => _launchURL(widget.url),
         child: FadeSlide(
           delay: widget.delay,
@@ -45,9 +43,6 @@ class _SocialIconsState extends State<SocialIcons>
               child: Image.asset("assets/social icons/${widget.image}.png")),
         ),
       ),
-    ).hover(
-      onHover: () => _controller.forward(),
-      onExit: () => _controller.reverse(),
     );
   }
 

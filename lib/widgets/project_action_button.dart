@@ -1,5 +1,4 @@
 import 'package:url_launcher/url_launcher.dart';
-import '../extensions/hover.dart';
 import 'package:Portfolio/animations/hover_lift.dart';
 import 'package:flutter/material.dart';
 
@@ -25,8 +24,7 @@ class _ProjectActionButtonState extends State<ProjectActionButton>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 80));
+    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 80));
   }
 
   @override
@@ -39,21 +37,22 @@ class _ProjectActionButtonState extends State<ProjectActionButton>
   Widget build(BuildContext context) {
     return HoverLift(
       controller: _controller,
-      child: OutlineButton(
-        child: Text(
-          widget.title,
-          style: Theme.of(context).textTheme.bodyText2.copyWith(
-                fontSize: widget.constraints.maxWidth / 55,
-              ),
+      child: MouseRegion(
+        onEnter: (details) => _controller.forward(),
+        onExit: (details) => _controller.reverse(),
+        child: OutlineButton(
+          child: Text(
+            widget.title,
+            style: Theme.of(context).textTheme.bodyText2.copyWith(
+                  fontSize: widget.constraints.maxWidth / 55,
+                ),
+          ),
+          splashColor: Colors.white54,
+          hoverColor: Colors.white10,
+          highlightedBorderColor: Colors.white,
+          borderSide: BorderSide(color: Colors.white, width: 2),
+          onPressed: () => _launchURL(widget.url),
         ),
-        splashColor: Colors.white54,
-        hoverColor: Colors.white10,
-        highlightedBorderColor: Colors.white,
-        borderSide: BorderSide(color: Colors.white, width: 2),
-        onPressed: () => _launchURL(widget.url),
-      ).hover(
-        onHover: () => _controller.forward(),
-        onExit: () => _controller.reverse(),
       ),
     );
   }

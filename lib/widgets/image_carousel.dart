@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../extensions/hover.dart';
 
 class ImageCarousel extends StatefulWidget {
   ImageCarousel({Key key, this.images}) : super(key: key);
@@ -43,10 +42,8 @@ class _ImageCarouselState extends State<ImageCarousel> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              buildButtons(context, "<", _previous, _previousButton)
-                  .hover(onHover: () {}, onExit: () {}),
+              buildButtons(context, "<", _previous, _previousButton),
               buildButtons(context, ">", _next, _nextButton)
-                  .hover(onHover: () {}, onExit: () {}),
             ],
           ),
         ),
@@ -54,8 +51,7 @@ class _ImageCarouselState extends State<ImageCarousel> {
     );
   }
 
-  Widget buildButtons(
-      BuildContext context, String text, Function onPressed, bool visible) {
+  Widget buildButtons(BuildContext context, String text, Function onPressed, bool visible) {
     return Visibility(
       visible: visible,
       maintainSize: true,

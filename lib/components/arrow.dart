@@ -4,7 +4,6 @@ import 'package:Portfolio/provider/page_provider.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../extensions/hover.dart';
 
 class Arrow extends StatelessWidget {
   const Arrow({
@@ -26,13 +25,11 @@ class Arrow extends StatelessWidget {
         angle: angle,
         child: Consumer<ArrowProvider>(
           builder: (context, value, child) {
-            return GestureDetector(
+            return InkWell(
               onTap: () {
                 position == ArrowPos.upper
-                    ? _pageProvider
-                        .checkIfAnimProg(_pageProvider.getCurrentPage - 1)
-                    : _pageProvider
-                        .checkIfAnimProg(_pageProvider.getCurrentPage + 1);
+                    ? _pageProvider.checkIfAnimProg(_pageProvider.getCurrentPage - 1)
+                    : _pageProvider.checkIfAnimProg(_pageProvider.getCurrentPage + 1);
 
                 return value.onTap(position);
               },
@@ -43,7 +40,7 @@ class Arrow extends StatelessWidget {
                   animation: value.getState(position),
                 ),
               ),
-            ).hover(onHover: () {}, onExit: () {});
+            );
           },
         ),
       ),
