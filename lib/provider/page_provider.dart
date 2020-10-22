@@ -12,10 +12,6 @@ class PageProvider extends ChangeNotifier {
   int get getCurrentPage => _currentPage;
 
   Future nextPage(int selectedPage, bool isMobile) async {
-    if (selectedPage < _animation.getDropperKeys.length) {
-      _animation.getDropperKeys[_currentPage].currentState.hideToTop();
-      _animation.getDropperKeys[selectedPage].currentState.showFromBottom();
-    }
     // avatar will go to the side if moving to the next page
     if (selectedPage > 0) _animation.forward(isMobile);
 
@@ -24,11 +20,6 @@ class PageProvider extends ChangeNotifier {
   }
 
   Future previousPage(int selectedPage, bool isMobile) async {
-    if (selectedPage >= 0) {
-      _animation.getDropperKeys[_currentPage].currentState.hideToBottom();
-      _animation.getDropperKeys[selectedPage].currentState.showFromTop();
-    }
-
     await Future.delayed(Duration(seconds: 2));
     // avatar will come in center if the page is going back to the landing screen
     if (selectedPage == 0) _animation.reverse(isMobile);

@@ -9,17 +9,8 @@ class Landing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _size = MediaQuery.of(context).size;
     return ScreenTypeLayout(
-      desktop: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          LandingDesktop(),
-          SizedBox(
-            width: _size.width / 3,
-          )
-        ],
-      ),
+      desktop: LandingDesktop(),
       mobile: LandingMobile(),
     );
   }

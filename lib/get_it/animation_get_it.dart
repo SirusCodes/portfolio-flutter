@@ -1,9 +1,14 @@
-import 'package:Portfolio/animations/fade_dropper.dart';
-import 'package:Portfolio/widgets/navigation_text.dart';
 import 'package:flutter/material.dart';
+
+import '../widgets/navigation_text.dart';
 
 class AnimationGetIt {
   AnimationController avatarDesktopController, avatarMobileController;
+
+  PageController pageController;
+
+  double pageValue = 0;
+  int get currentPage => pageValue.floor() ?? 0;
 
   forward(bool isMobile) {
     isMobile
@@ -17,18 +22,9 @@ class AnimationGetIt {
         : avatarDesktopController.reverse();
   }
 
-  List<GlobalKey<FadeDropperState>> _dropperKeys;
   List<GlobalKey<NavigationTextState>> _naviagtionKeys;
 
-  List<GlobalKey<FadeDropperState>> get getDropperKeys => _dropperKeys;
   List<GlobalKey<NavigationTextState>> get getNavigationKeys => _naviagtionKeys;
-
-  generateDropperKeys() {
-    _dropperKeys = List.generate(3, (_) => GlobalKey<FadeDropperState>());
-    Future.delayed(Duration(milliseconds: 80), () {
-      _dropperKeys[0].currentState.showFromTop();
-    });
-  }
 
   generateNavigationKeys() {
     _naviagtionKeys = List.generate(3, (_) => GlobalKey<NavigationTextState>());
