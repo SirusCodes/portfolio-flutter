@@ -3,23 +3,21 @@ import 'package:flutter/material.dart';
 import '../widgets/navigation_text.dart';
 
 class AnimationGetIt {
-  AnimationController avatarDesktopController, avatarMobileController;
+  AnimationController avatarMobileController;
 
   PageController pageController;
 
   double pageValue = 0;
   int get currentPage => pageValue.floor() ?? 0;
+  double get avatarAnimationValue =>
+      currentPage < 1 ? pageValue - currentPage : 1;
 
   forward(bool isMobile) {
-    isMobile
-        ? avatarMobileController.forward()
-        : avatarDesktopController.forward();
+    avatarMobileController.forward();
   }
 
   reverse(bool isMobile) {
-    isMobile
-        ? avatarMobileController.reverse()
-        : avatarDesktopController.reverse();
+    avatarMobileController.reverse();
   }
 
   List<GlobalKey<NavigationTextState>> _naviagtionKeys;
