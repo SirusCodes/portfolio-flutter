@@ -26,7 +26,7 @@ class LandingScreenDesktop extends StatelessWidget {
         Align(
           alignment: Alignment.center,
           child: FractionallySizedBox(
-            widthFactor: .86,
+            widthFactor: .90,
             child: Content(),
           ),
         ),

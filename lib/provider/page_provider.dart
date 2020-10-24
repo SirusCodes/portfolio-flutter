@@ -31,7 +31,7 @@ class PageProvider extends ChangeNotifier {
     if (selectedPage == _currentPage) return null;
 
     if (!isMobile) {
-      var keys = _animation.getNavigationKeys;
+      var keys;
       keys[_currentPage].currentState.level();
       keys[selectedPage].currentState.lift();
     }

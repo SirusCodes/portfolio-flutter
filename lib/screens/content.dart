@@ -18,7 +18,7 @@ class _ContentState extends State<Content> {
   @override
   void initState() {
     super.initState();
-    _animation.pageController = PageController()
+    _animation.pageController = PageController(keepPage: true)
       ..addListener(() {
         setState(() {
           _animation.pageValue = _animation.pageController.page;
@@ -54,7 +54,6 @@ class _ContentState extends State<Content> {
           } else if (index == curr + 1 || index == curr + 2) {
             opacity = (_animation.pageValue - curr);
           }
-          print("$index : $opacity");
           return Opacity(
             opacity: opacity,
             child: _items[index],

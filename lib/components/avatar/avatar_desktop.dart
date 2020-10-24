@@ -18,39 +18,41 @@ class AvatarDesktop extends StatelessWidget {
     return Positioned(
       top: _shortest / 2 - _longest / 10,
       right: _longest / 3 - _longest / 10,
-      child: AnimatedBuilder(
-        animation: _animation.pageController,
-        builder: (context, child) {
-          return Transform.translate(
-            offset: Offset.lerp(
-              Offset(0, 0),
-              Offset(
-                _longest / 3 - _longest / 8,
-                _shortest / 4 - _shortest / 2,
-              ),
-              _animation.avatarAnimationValue,
-            ),
-            child: CustomAnimation(
-              tween: Tween<double>(begin: 0.0, end: 1.0),
-              duration: Duration(seconds: 3),
-              curve: Curves.easeInQuart,
-              builder: (context, child, value) {
-                return Opacity(
-                  opacity: value,
-                  child: child,
-                );
-              },
-              child: CircleAvatar(
-                radius: lerpDouble(
-                  _longest / 10,
-                  _longest / 20,
-                  _animation.avatarAnimationValue,
+      child: IgnorePointer(
+        child: AnimatedBuilder(
+          animation: _animation.pageController,
+          builder: (context, child) {
+            return Transform.translate(
+              offset: Offset.lerp(
+                Offset(0, 0),
+                Offset(
+                  _longest / 3 - _longest / 8,
+                  _shortest / 4 - _shortest / 2,
                 ),
-                backgroundImage: AssetImage("assets/images/darshan.jpg"),
+                _animation.avatarAnimationValue,
               ),
-            ),
-          );
-        },
+              child: CustomAnimation(
+                tween: Tween<double>(begin: 0.0, end: 1.0),
+                duration: Duration(seconds: 3),
+                curve: Curves.easeInQuart,
+                builder: (context, child, value) {
+                  return Opacity(
+                    opacity: value,
+                    child: child,
+                  );
+                },
+                child: CircleAvatar(
+                  radius: lerpDouble(
+                    _longest / 10,
+                    _longest / 20,
+                    _animation.avatarAnimationValue,
+                  ),
+                  backgroundImage: AssetImage("assets/images/darshan.jpg"),
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

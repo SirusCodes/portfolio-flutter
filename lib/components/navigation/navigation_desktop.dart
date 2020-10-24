@@ -14,12 +14,6 @@ class _NavigationDesktopState extends State<NavigationDesktop> {
   final _animation = locator<AnimationGetIt>();
 
   @override
-  void initState() {
-    super.initState();
-    _animation.generateNavigationKeys();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -27,23 +21,26 @@ class _NavigationDesktopState extends State<NavigationDesktop> {
         Spacer(),
         NavigationText(
           "Home",
-          key: _animation.getNavigationKeys[0],
+          onTap: () => _animation.animateTo(0),
           delay: 0,
           index: 0,
+          scale: 1,
         ),
         SizedBox(height: 10),
         NavigationText(
           "About",
-          key: _animation.getNavigationKeys[1],
           delay: .2,
           index: 1,
+          onTap: () => _animation.animateTo(1),
+          scale: 1,
         ),
         SizedBox(height: 10),
         NavigationText(
           "Projects",
-          key: _animation.getNavigationKeys[2],
           delay: .4,
           index: 2,
+          onTap: () => _animation.animateTo(2),
+          scale: 1,
         ),
         Spacer(),
       ],

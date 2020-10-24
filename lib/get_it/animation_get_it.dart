@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 
-import '../widgets/navigation_text.dart';
-
 class AnimationGetIt {
   AnimationController avatarMobileController;
 
   PageController pageController;
+  int current = 0;
 
-  double pageValue = 0;
-  int get currentPage => pageValue.floor() ?? 0;
+  double _pageValue = 0;
+  set pageValue(double value) {
+    _pageValue = value;
+    if (currentPage != current) animateTo(currentPage);
+  }
+
+  double get pageValue => _pageValue;
+
+  int get currentPage => _pageValue.floor() ?? 0;
   double get avatarAnimationValue =>
-      currentPage < 1 ? pageValue - currentPage : 1;
+      currentPage < 1 ? navigationAnimationValue : 1;
+  double get navigationAnimationValue => _pageValue - currentPage;
 
   forward(bool isMobile) {
     avatarMobileController.forward();
@@ -20,14 +27,11 @@ class AnimationGetIt {
     avatarMobileController.reverse();
   }
 
-  List<GlobalKey<NavigationTextState>> _naviagtionKeys;
-
-  List<GlobalKey<NavigationTextState>> get getNavigationKeys => _naviagtionKeys;
-
-  generateNavigationKeys() {
-    _naviagtionKeys = List.generate(3, (_) => GlobalKey<NavigationTextState>());
-    Future.delayed(Duration(seconds: 1, milliseconds: 100), () {
-      _naviagtionKeys[0].currentState.lift();
-    });
+  void animateTo(selected) {
+    pageController.animateToPage(
+      selected,
+      curve: Curves.easeIn,
+      duration: Duration(milliseconds: 500),
+    );
   }
 }
