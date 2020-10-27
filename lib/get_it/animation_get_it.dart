@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AnimationGetIt {
   AnimationController avatarMobileController;
+  AnimationController rippleController;
 
   PageController pageController;
   int current = 0;

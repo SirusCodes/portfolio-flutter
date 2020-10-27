@@ -13,23 +13,28 @@ class _BackgroundState extends State<Background> {
     return Material(
       color: Theme.of(context).backgroundColor,
       child: CustomPaint(
-        size: Size(MediaQuery.of(context).size.width,
-            MediaQuery.of(context).size.height),
-        painter: BackgroundPainter(1),
+        size: Size(
+          MediaQuery.of(context).size.width,
+          MediaQuery.of(context).size.height,
+        ),
+        painter: BackgroundPainter(
+          1,
+          color: Theme.of(context).primaryColor,
+        ),
       ),
     );
   }
 }
 
 class BackgroundPainter extends CustomPainter {
-  BackgroundPainter(this.value);
-
+  BackgroundPainter(this.value, {this.color});
+  Color color;
   double value;
 
   @override
   void paint(Canvas canvas, Size size) {
     Paint _paint = Paint()
-      ..color = Color(0xFF1E1E1E)
+      ..color = color
       ..strokeWidth = 20
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
