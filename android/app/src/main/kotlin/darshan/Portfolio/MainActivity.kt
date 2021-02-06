@@ -1,4 +1,4 @@
-package darshan.Portfolio
+package darshan.portfolio
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,5 +1,5 @@
-import 'package:Portfolio/get_it/animation_get_it.dart';
-import 'package:Portfolio/locator.dart';
+import 'package:portfolio/get_it/animation_get_it.dart';
+import 'package:portfolio/locator.dart';
 import 'package:flutter/foundation.dart';
 
 class PageProvider extends ChangeNotifier {

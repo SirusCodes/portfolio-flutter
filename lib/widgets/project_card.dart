@@ -1,5 +1,5 @@
-import 'package:Portfolio/widgets/image_carousel.dart';
-import 'package:Portfolio/widgets/project_action_button.dart';
+import 'package:portfolio/widgets/image_carousel.dart';
+import 'package:portfolio/widgets/project_action_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

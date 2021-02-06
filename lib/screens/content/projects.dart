@@ -1,5 +1,5 @@
-import 'package:Portfolio/project_data.dart';
-import 'package:Portfolio/widgets/project_card.dart';
+import 'package:portfolio/project_data.dart';
+import 'package:portfolio/widgets/project_card.dart';
 import 'package:flutter/material.dart';
 import 'package:scroll_snap_list/scroll_snap_list.dart';
 import 'package:simple_animations/simple_animations.dart';

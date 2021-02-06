@@ -1,4 +1,4 @@
-import 'package:Portfolio/enums/arrow_pos.dart';
+import 'package:portfolio/enums/arrow_pos.dart';
 import 'package:flutter/foundation.dart';
 
 class ArrowProvider extends ChangeNotifier {

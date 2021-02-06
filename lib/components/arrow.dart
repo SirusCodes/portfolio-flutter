@@ -1,6 +1,6 @@
-import 'package:Portfolio/enums/arrow_pos.dart';
-import 'package:Portfolio/provider/arrow_provider.dart';
-import 'package:Portfolio/provider/page_provider.dart';
+import 'package:portfolio/enums/arrow_pos.dart';
+import 'package:portfolio/provider/arrow_provider.dart';
+import 'package:portfolio/provider/page_provider.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,8 +28,10 @@ class Arrow extends StatelessWidget {
             return InkWell(
               onTap: () {
                 position == ArrowPos.upper
-                    ? _pageProvider.checkIfAnimProg(_pageProvider.getCurrentPage - 1)
-                    : _pageProvider.checkIfAnimProg(_pageProvider.getCurrentPage + 1);
+                    ? _pageProvider
+                        .checkIfAnimProg(_pageProvider.getCurrentPage - 1)
+                    : _pageProvider
+                        .checkIfAnimProg(_pageProvider.getCurrentPage + 1);
 
                 return value.onTap(position);
               },

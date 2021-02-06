@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/all.dart';
 
@@ -8,10 +7,9 @@ import 'utils/themes.dart';
 
 void main() {
   setup();
-  runApp(DevicePreview(
-    enabled: false,
-    builder: (context) => ProviderScope(child: MyApp()),
-  ));
+  runApp(
+    ProviderScope(child: MyApp()),
+  );
 }
 
 class MyApp extends ConsumerWidget {
@@ -19,7 +17,7 @@ class MyApp extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final theme = watch(themeProvider.state);
     return MaterialApp(
-      title: 'Portfolio',
+      title: 'portfolio',
       debugShowCheckedModeBanner: false,
       theme: theme ? darkTheme : lightTheme,
       home: Material(child: LandingScreen()),

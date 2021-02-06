@@ -1,7 +1,7 @@
-import 'package:Portfolio/components/avatar/avatar_mobile.dart';
-import 'package:Portfolio/components/background.dart';
-import 'package:Portfolio/components/navigation/navigation_mobile.dart';
-import 'package:Portfolio/screens/content.dart';
+import 'package:portfolio/components/avatar/avatar_mobile.dart';
+import 'package:portfolio/components/background.dart';
+import 'package:portfolio/components/navigation/navigation_mobile.dart';
+import 'package:portfolio/screens/content.dart';
 import 'package:flutter/material.dart';
 
 class LandingScreenMobile extends StatelessWidget {

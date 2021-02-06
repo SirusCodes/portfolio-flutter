@@ -1,7 +1,7 @@
-import 'package:Portfolio/components/social_icons.dart';
-import 'package:Portfolio/get_it/animation_get_it.dart';
-import 'package:Portfolio/locator.dart';
-import 'package:Portfolio/utils/themes.dart';
+import 'package:portfolio/components/social_icons.dart';
+import 'package:portfolio/get_it/animation_get_it.dart';
+import 'package:portfolio/locator.dart';
+import 'package:portfolio/utils/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_animations/simple_animations.dart';

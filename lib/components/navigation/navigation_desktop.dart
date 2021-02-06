@@ -1,6 +1,6 @@
-import 'package:Portfolio/get_it/animation_get_it.dart';
-import 'package:Portfolio/locator.dart';
-import 'package:Portfolio/widgets/navigation_text.dart';
+import 'package:portfolio/get_it/animation_get_it.dart';
+import 'package:portfolio/locator.dart';
+import 'package:portfolio/widgets/navigation_text.dart';
 import 'package:flutter/material.dart';
 
 class NavigationDesktop extends StatefulWidget {

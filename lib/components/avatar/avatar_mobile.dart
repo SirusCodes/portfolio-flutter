@@ -1,5 +1,5 @@
-import 'package:Portfolio/get_it/animation_get_it.dart';
-import 'package:Portfolio/locator.dart';
+import 'package:portfolio/get_it/animation_get_it.dart';
+import 'package:portfolio/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_animations/simple_animations.dart';
 

@@ -1,5 +1,5 @@
 import 'package:url_launcher/url_launcher.dart';
-import 'package:Portfolio/animations/hover_lift.dart';
+import 'package:portfolio/animations/hover_lift.dart';
 import 'package:flutter/material.dart';
 
 class ProjectActionButton extends StatefulWidget {
@@ -24,7 +24,8 @@ class _ProjectActionButtonState extends State<ProjectActionButton>
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(vsync: this, duration: Duration(milliseconds: 80));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(milliseconds: 80));
   }
 
   @override
